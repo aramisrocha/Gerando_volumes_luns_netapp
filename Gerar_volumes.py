@@ -1,12 +1,17 @@
-qtd = 10
-valor_inicial = 40
-tamanho_lun = 100
-vserver = "vserver1"
-aggr = "aggregate1"
-volume = "vol1"
-ambiente_destino = "vmware"
-resposta_espelhamento = "SIM"
-igroup = "igroup1"
+# Script para autmatizar a criação de luns e esoelhamento de LUN no ambiente NETAPP
+# Autor: Aramis de Oliveira Andrade Rocha
+
+
+
+qtd = int(input("Entrar com a quantidade de Luns: "))
+valor_inicial = int(input("Entrar com o valor inicial das luns: "))
+tamanho_lun = int(input("Entrar com tamanho da LUN em GB: "))
+vserver = input("Entrar com o Vserver: ")
+aggr = input("Entrar com o aggregate: ")
+volume = input("Entrar com o nome do volume começando vol: ")
+ambiente_destino = input("Qual plataforma de destino (vmware, linux, aix): ")
+igroup = input("Entrar com o igroup para mapear: ")
+resposta_espelhamento = input("Este volume terá espelhamento? (SIM/NÃO): ")
 
 
 def limpar_arquivo_bkp():
@@ -32,14 +37,14 @@ def espelhamento(aggr_bkp, vserver_bkp):
 
 
 # Verificando resposta para espelhamento
-while resposta_espelhamento.upper() != "SIM" and resposta_espelhamento.upper() != "NÃO":
-    print("Opção inválida. Por favor, digite 'SIM' ou 'NÃO'.")
-    resposta_espelhamento = input("Este volume terá espelhamento? (SIM/NÃO): ")
+while resposta_espelhamento.upper() != "SIM" and resposta_espelhamento.upper() != "NAO":
+    print("Opção inválida. Por favor, digite 'SIM' ou 'NAO'.")
+    resposta_espelhamento = input("Este volume terá espelhamento? (SIM/NAO): ")
 
 if resposta_espelhamento.upper() == "SIM":
     limpar_arquivo_bkp()
-    aggr_bkp = "aggr_backup"
-    vserver_bkp = "vserver_backup"
+    aggr_bkp = input("Entrar com o aggregate de Backup: ")
+    vserver_bkp = input("Entrar com o Vserver de Backup: ")
     espelhamento(aggr_bkp, vserver_bkp)
 else:
     print("Sem Espelhamento")
