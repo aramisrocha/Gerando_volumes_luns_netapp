@@ -1,8 +1,8 @@
-# Script para autmatizar a criação de luns e esoelhamento de LUN no ambiente NETAPP
+# Script para autmatizar a criação de luns e espelhamento de LUN no ambiente NETAPP
 # Autor: Aramis de Oliveira Andrade Rocha
 
 
-
+# Entrando com os dados necessarios para para gerar o script
 qtd = int(input("Entrar com a quantidade de Luns: "))
 valor_inicial = int(input("Entrar com o valor inicial das luns: "))
 tamanho_lun = int(input("Entrar com tamanho da LUN em GB: "))
